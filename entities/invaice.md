@@ -1,7 +1,7 @@
 ---
 title: Invaice
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-19
 type: entity
 tags: [startup, product, saas, healthcare, invoice-automation]
 sources: [raw/articles/invaice-mvp-scope-2026-05-18.md]
@@ -9,27 +9,38 @@ sources: [raw/articles/invaice-mvp-scope-2026-05-18.md]
 
 # Invaice
 
-Invoice automation SaaS for CCRC (Continuing Care Retirement Community) facilities. MVP in development as of May 2026.
+Invoice automation SaaS for CCRC (Continuing Care Retirement Community) facilities. MVP in active development as of May 2026, targeting a single pilot customer facility.
 
 ## Overview
 
-Invaice extracts data from invoice documents using AI (Gemini/Vertex AI) and provides a review/approval workflow before CSV export. Target users: facility processors, managers, and admins at CCRC facilities.
+Invaice extracts data from invoice documents using AI (Gemini via Vertex AI) and provides a review/approval workflow before CSV export. Target users: facility processors, managers, and admins at CCRC facilities.
+
+The full user journey: processor logs in → uploads PDF/photo → AI extracts fields with confidence scores → user reviews/corrects in split-screen → approves (manual or auto) → downloads CSV export.
 
 ## Key Facts
 
-- **MVP scope:** Auth0 RBAC multi-tenancy, PDF/photo upload, AI extraction with confidence scoring, split-screen review, manual/auto-approval, single-format CSV export, vendor management, notifications, admin user management
-- **Stack (inferred from scope):** Go backend, TypeScript frontend, Auth0, Vertex AI/Gemini, GCS
-- **Quality bar:** Tenant isolation by `facility_id`, no PHI at INFO logs, full audit trail, zero high/critical CVEs in CI
-- **Pilot customer:** A CCRC facility (exact name not specified in MVP scope)
+- **Authentication:** Auth0 with Organizations (one org per facility), three roles: admin, manager, processor
+- **Invoice intake:** drag-and-drop PDF or camera capture (mobile), duplicate detection (vendor + invoice number + amount), max 10 concurrent uploads
+- **AI extraction:** Gemini via Vertex AI, confidence scoring per field (High ≥90%, Medium 70–89%, Low <70%), cross-field validation, failure handling with retry
+- **Review:** split-screen view (original left, extracted right), inline editing, color-coded confidence, auto-save
+- **Approval:** manual (any role) or auto (configurable confidence threshold + amount ceiling), 48h reversal window, immutable after close
+- **Export:** single fixed CSV format, single or batch (up to 500), time-limited GCS URLs, audit log
+- **Vendor management:** profiles with name, contact, address, tax ID; linked to invoices for display/filtering
+- **Notifications:** email + in-app feed for extraction complete, approval required, auto-approval, export ready
+- **Stack (inferred):** Go backend, TypeScript frontend, Auth0, Vertex AI/Gemini, GCS
+- **Quality gates:** tenant isolation by `facility_id`, no PHI at INFO logs, `pnpm audit` pass, full audit trail, zero high/critical CVEs in CI
 
 ## Architecture Notes
 
-- Tenant isolation: every query scoped by `facility_id`
+- Tenant isolation: every query scoped by `facility_id` — no cross-tenant data leakage
 - Auth0 Organizations: one org per facility
-- Three roles: admin, manager, processor
 - Invoice status pipeline: `pending` → `extracting` → `needs_review` → `approved` → `exported`
-- Auto-approval: configurable per facility with confidence threshold + amount ceiling
-- Immutable after reversal window (default 48h) or export
+- Auto-approval configurable per facility with confidence threshold + amount ceiling
+- Approved invoices immutable after reversal window (default 48h) or export
+
+## Deferred to Post-MVP
+
+- Public vendor portal, AI retraining per vendor, analytics dashboard, multiple export templates / ERP field mapping, mobile native app, SSO/SAML, direct ERP API integration, email-to-invoice intake, advanced workflow automation, A/B testing framework, billing/subscription management
 
 ## Related
 
