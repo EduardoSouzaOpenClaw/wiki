@@ -1,10 +1,10 @@
 ---
 title: Invaice
 created: 2026-05-18
-updated: 2026-05-19
+updated: 2026-05-22
 type: entity
 tags: [startup, product, saas, healthcare, invoice-automation]
-sources: [raw/articles/invaice-mvp-scope-2026-05-18.md]
+sources: [raw/articles/invaice-mvp-scope-2026-05-18.md, raw/articles/invaice-mvp-scope-2026-05-18.md]
 ---
 
 # Invaice
@@ -37,6 +37,26 @@ The full user journey: processor logs in → uploads PDF/photo → AI extracts f
 - Invoice status pipeline: `pending` → `extracting` → `needs_review` → `approved` → `exported`
 - Auto-approval configurable per facility with confidence threshold + amount ceiling
 - Approved invoices immutable after reversal window (default 48h) or export
+- **Health checks:** DB, GCS, Vertex AI, email service
+- **Cross-field validation:** line item sum vs. stated total, required-field check
+- **Upload limit:** max 10 concurrent uploads per user
+
+## Quality Gates
+
+- Tenant-scoped endpoints verified by integration tests (no cross-tenant leakage)
+- Approval irreversible after reversal window — no bypass paths
+- Duplicate invoices blocked before extraction
+- No PHI at INFO log level; `redact()` helper on patient-adjacent fields
+- `pnpm audit --audit-level=high` passes with zero high/critical CVEs in CI
+- `pnpm install --frozen-lockfile` in all CI jobs
+- Full audit trail: upload, extraction complete, field correction, approval, export
+
+## Related
+
+- [[auth0]] — authentication provider
+- [[vertex-ai]] — AI extraction infrastructure
+- [[multi-tenancy-patterns]] — tenant isolation approach
+- [[invoice-automation]] — concept covering AI invoice workflows
 
 ## Deferred to Post-MVP
 

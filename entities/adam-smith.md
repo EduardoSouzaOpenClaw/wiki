@@ -1,7 +1,7 @@
 ---
 title: Adam Smith
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-22
 type: entity
 tags: [person, economist, philosophy, history]
 sources: [raw/articles/adam-smith-riqueza-das-nacoes-purepeople-2026-05-18.md]

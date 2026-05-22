@@ -11,7 +11,11 @@
 - Created: concepts/multi-tenancy-patterns.md, concepts/csv-export.md, concepts/classical-liberalism.md, concepts/invisible-hand.md, concepts/invoice-automation.md, concepts/wealth-of-nations.md, concepts/free-trade.md
 - Sources: raw/articles/invaice-mvp-scope-2026-05-18.md, raw/articles/adam-smith-riqueza-das-nacoes-purepeople-2026-05-18.md
 
-## [2026-05-18] create | Wiki initialized
+## [2026-05-22] ingest | 2 source(s) processed
+- raw/articles/invaice-mvp-scope-2026-05-18.md — re-ingested; updated [[invaice]] with quality gates, health checks, cross-field validation, upload limits
+- raw/articles/adam-smith-riqueza-das-nacoes-purepeople-2026-05-18.md — re-ingested; bumped updated date on [[adam-smith]]
+
+## [2026-05-19] create | Wiki initialized
 - Domain: Personal knowledge base — software development, AI/ML, business, entrepreneurship, and general learning
 - Remote: https://github.com/EduardoSouzaOpenClaw/wiki
 - Structure created with SCHEMA.md, index.md, log.md
