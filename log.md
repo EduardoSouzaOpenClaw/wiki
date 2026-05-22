@@ -11,6 +11,12 @@
 - Created: concepts/multi-tenancy-patterns.md, concepts/csv-export.md, concepts/classical-liberalism.md, concepts/invisible-hand.md, concepts/invoice-automation.md, concepts/wealth-of-nations.md, concepts/free-trade.md
 - Sources: raw/articles/invaice-mvp-scope-2026-05-18.md, raw/articles/adam-smith-riqueza-das-nacoes-purepeople-2026-05-18.md
 
+## [2026-05-21] ingest | 3 source(s) processed
+- Moved from inbox/ → raw/articles/
+- Created: entities/bettina-arndt.md, entities/ernest-hemingway.md, entities/viktor-frankl.md
+- Created: concepts/logoterapia.md, concepts/sabedoria.md, concepts/sofrimento-e-sentido.md
+- Sources: bettina-arndt-homens-optando-fora-2026-05-15.md, hemingway-maturidade-silencio-sabedoria-2026-05-20.md, viktor-frankl-sofrimento-sentido-2026-05-19.md
+
 ## [2026-05-22] ingest | 2 source(s) processed
 - raw/articles/invaice-mvp-scope-2026-05-18.md — re-ingested; updated [[invaice]] with quality gates, health checks, cross-field validation, upload limits
 - raw/articles/adam-smith-riqueza-das-nacoes-purepeople-2026-05-18.md — re-ingested; bumped updated date on [[adam-smith]]
