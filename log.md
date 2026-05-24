@@ -37,6 +37,10 @@
 - Created: concepts/linkedin-articles-research-cdc-ai-friendly.md (research summary)
 - Sources: brave-search results via Brave Search API (API key activated)
 
+## [2026-05-24] ingest | No new sources to process
+- 5 Brave Search sources from 2026-05-23 already processed in prior session
+- Marked as processed in raw/processed.json: multi_agent, vsa, pact, cdc_ai, ai_friendly
+
 ## [2026-05-22] ingest | 2 source(s) processed
 - raw/articles/invaice-mvp-scope-2026-05-18.md — re-ingested; updated [[invaice]] with quality gates, health checks, cross-field validation, upload limits
 - raw/articles/adam-smith-riqueza-das-nacoes-purepeople-2026-05-18.md — re-ingested; bumped updated date on [[adam-smith]]
